@@ -4,8 +4,9 @@
 [ext_resource path="res://Characters/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/Tilemap/player.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.49908, 7.09761 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.12396
+height = 7.33732
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
