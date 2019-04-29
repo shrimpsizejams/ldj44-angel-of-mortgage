@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://terrain/other_objects.tres" type="TileSet" id=2]
 [ext_resource path="res://terrain/object_tiles.tres" type="TileSet" id=3]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=4]
 [ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Mob.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -17.7883, 76.7218, 0, 0, 0, 0, 142.095, 74.7315, 0, 0, 0, 0, 144.086, 44.8777, 0, 0, 0, 0, 185.218, 46.2045, 0, 0, 0, 0, 184.554, -120.977, 0, 0, 0, 0, -5.84679, -121.64, 0, 0, 0, 0, -6.51022, -79.845, 0, 0, 0, 0, -13.1444, -71.2205, 0, 0, 0, 0, -187.623, -74.5376, 0, 0, 0, 0, -186.297, 36.2533, 0, 0, 0, 0, -18.4517, 34.263, 0, 0, 0, 0, -17.7883, 76.7218 )
+}
 
 [node name="Map01" type="Node2D"]
 position = Vector2( 47.1556, -66.0179 )
@@ -49,5 +55,18 @@ tile_data = PoolIntArray( -786453, 4, 0, -786452, 4, 0, -786451, 4, 0, -786450, 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 194.507, 99.0198 )
 z_index = 1
-speed = 50
+speed = 300
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D"]
+position = Vector2( -160.702, 35.9498 )
+rotation = -0.0118581
+offset = 940.72
+
+[node name="Green Guy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 6 )]
+speed = 100
 
