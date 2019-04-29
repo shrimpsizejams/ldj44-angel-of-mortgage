@@ -55,7 +55,7 @@ tile_data = PoolIntArray( -786453, 4, 0, -786452, 4, 0, -786451, 4, 0, -786450, 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 194.507, 99.0198 )
 z_index = 1
-speed = 300
+speed = 70
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -68,4 +68,6 @@ rotation = -0.0118571
 offset = 940.72
 
 [node name="Green Guy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 6 )]
-speed = 100
+run_speed = 100
+detect_radius = 70
+

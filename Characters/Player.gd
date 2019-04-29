@@ -6,13 +6,19 @@ export (float) var scythe_cooldown
 
 var velocity = Vector2()
 var alive = true
+var bloody = false
+var current_animation = "down"
 
 func _ready():
 	$ScytheTimer.wait_time = scythe_cooldown
-	set_animation("down")
+	set_animation(current_animation)
 
 func set_animation(animation_str):
-	$Sprite/AnimatedSprite.animation = animation_str
+	if bloody:
+		$Sprite/AnimatedSprite.animation = animation_str + "_blood"
+	else:
+		$Sprite/AnimatedSprite.animation = animation_str
+	current_animation = animation_str
 
 func control(delta):
 	velocity = Vector2()
@@ -49,4 +55,14 @@ func _on_ScytheTimer_timeout():
 		return
 	for body in overlapping_bodies:
 		body.alive = false
+	
 	$Camera2D.shake(0.2, 15, 8)
+	bloody = true
+	set_animation(current_animation)
+	$BloodDry.start()
+	
+
+func _on_BloodDry_timeout():
+	bloody = false
+	set_animation(current_animation)
+	
