@@ -43,3 +43,10 @@ func _physics_process(delta):
 func _on_ScytheTimer_timeout():
 	$Sprite/AnimatedSprite.stop()
 	$Sprite/AnimatedSprite.frame = 0
+	
+	var overlapping_bodies = $ScytheRadius.get_overlapping_bodies()
+	if not overlapping_bodies:
+		return
+	for body in overlapping_bodies:
+		body.alive = false
+	$Camera2D.shake(0.2, 15, 8)

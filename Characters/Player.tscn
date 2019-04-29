@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player.gd" type="Script" id=2]
@@ -8,16 +8,17 @@
 [ext_resource path="res://assets/Player/player_16x2_5.png" type="Texture" id=6]
 [ext_resource path="res://assets/Player/player_16x2_6.png" type="Texture" id=7]
 [ext_resource path="res://assets/Player/player_16x2_7.png" type="Texture" id=8]
-[ext_resource path="res://assets/Player/player_16x2_0.png" type="Texture" id=9]
-[ext_resource path="res://assets/Player/player_16x2_1.png" type="Texture" id=10]
-[ext_resource path="res://assets/Player/player_16x2_12.png" type="Texture" id=11]
-[ext_resource path="res://assets/Player/player_16x2_13.png" type="Texture" id=12]
-[ext_resource path="res://assets/Player/player_16x2_14.png" type="Texture" id=13]
-[ext_resource path="res://assets/Player/player_16x2_15.png" type="Texture" id=14]
-[ext_resource path="res://assets/Player/player_16x2_8.png" type="Texture" id=15]
-[ext_resource path="res://assets/Player/player_16x2_9.png" type="Texture" id=16]
+[ext_resource path="res://assets/Player/player_16x2_12.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player/player_16x2_13.png" type="Texture" id=10]
+[ext_resource path="res://assets/Player/player_16x2_14.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player/player_16x2_15.png" type="Texture" id=12]
+[ext_resource path="res://assets/Player/player_16x2_8.png" type="Texture" id=13]
+[ext_resource path="res://assets/Player/player_16x2_9.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/player_16x2_0.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/player_16x2_1.png" type="Texture" id=16]
 [ext_resource path="res://assets/Player/player_16x2_10.png" type="Texture" id=17]
 [ext_resource path="res://assets/Player/player_16x2_11.png" type="Texture" id=18]
+[ext_resource path="res://Characters/Camera2D.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -31,11 +32,6 @@ animations = [ {
 "name": "right",
 "speed": 5.0
 }, {
-"frames": [  ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "up",
@@ -43,22 +39,22 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": false,
-"name": "down",
+"name": "right_blood",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": false,
-"name": "right_blood",
+"name": "up_blood",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": false,
-"name": "up_blood",
+"name": "down_blood",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": false,
-"name": "down_blood",
+"name": "down",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 18 ) ],
@@ -70,6 +66,9 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 5.12396
 height = 7.33732
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 11.2788, 10.756 )
 
 [node name="Player" index="0" instance=ExtResource( 1 )]
 collision_layer = 2
@@ -97,5 +96,14 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 19 )
+
+[node name="ScytheRadius" type="Area2D" parent="." index="4"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="swing" type="CollisionShape2D" parent="ScytheRadius" index="0"]
+position = Vector2( -0.824402, 0 )
+shape = SubResource( 3 )
 
 [connection signal="timeout" from="ScytheTimer" to="." method="_on_ScytheTimer_timeout"]
