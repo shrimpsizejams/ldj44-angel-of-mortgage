@@ -8,7 +8,7 @@
 radius = 5.12396
 height = 7.33732
 
-[node name="Player" index="0" instance=ExtResource( 1 )]
+[node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 speed = 200
 scythe_cooldown = 0.4

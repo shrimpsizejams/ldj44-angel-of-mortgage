@@ -12,6 +12,10 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
+tweak_left = 47
+tweak_right = 47
+tweak_top = -66
+tweak_bottom = -66
 
 [node name="Other objects" type="TileMap" parent="."]
 z_index = 2
