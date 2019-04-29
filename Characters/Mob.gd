@@ -35,9 +35,7 @@ func _physics_process(delta):
 #	move_and_slide(velocity)
 
 func _on_DetectRadius_body_entered(body):
-	if body.name == "Player":
-		speed = run_speed
+	speed = run_speed
 
 func _on_DetectRadius_body_exited(body):
-	if body.name == "Player":
-		speed = walk_speed
+	speed = walk_speed
