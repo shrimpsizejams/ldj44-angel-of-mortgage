@@ -11,6 +11,8 @@ var alive = true
 onready var parent = get_parent()
 
 func _ready():
+	var circle = CircleShape2D.new()
+	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 	speed = walk_speed
 
